@@ -4,19 +4,41 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"></script>
     <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyBx2cWdFp_amXtgB0MWH8qLrodpqtcpAW8",
-      authDomain: "bubblenettutorial.firebaseapp.com",
-      projectId: "bubblenettutorial",
-      storageBucket: "bubblenettutorial.firebasestorage.app",
-      messagingSenderId: "731380132780",
-      appId: "1:731380132780:web:7c000c0ef2147395122809",
-      measurementId: "G-VTSQN9395P"
-};
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialize Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyBx2cWdFp_amXtgB0MWH8qLrodpqtcpAW8",
+    authDomain: "bubblenettutorial.firebaseapp.com",
+    projectId: "bubblenettutorial",
+    storageBucket: "bubblenettutorial.firebasestorage.app",
+    messagingSenderId: "731380132780",
+    appId: "1:731380132780:web:7c000c0ef2147395122809",
+    measurementId: "G-VTSQN9395P"
+  };
 
-      const app = firebase.initializeApp(firebaseConfig);
-      const db = firebase.firestore();
-    </script>
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  // Test button
+  const testBtn = document.getElementById('testButton');
+  testBtn.addEventListener('click', () => {
+    db.collection("users").add({
+      username: "Morgan",
+      email: "morgan@example.com",
+      createdAt: new Date()
+    })
+    .then(() => alert("User added to Firestore!"))
+    .catch(err => console.error(err));
+  });
+
+  // Show/hide form
+  const btn = document.getElementById('show-form-btn');
+  const form = document.getElementById('signup-form');
+  btn.addEventListener('click', () => {
+    form.style.display = form.style.display === 'block' ? 'none' : 'block';
+  });
+});
+</script>
     <link rel="stylesheet" href="PrettyNet.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,6 +85,7 @@
       </div>
     </body>
   </html>
+
 
 
 
