@@ -46,6 +46,20 @@
                 form.style.display = form.style.display === 'block' ? 'none' : 'block';
                 });
             </script>
+<button id="testButton">Add Test User</button>
+
+<script>
+  document.getElementById('testButton').addEventListener('click', () => {
+    db.collection("users").add({
+      username: "Morgan",
+      email: "morgan@example.com",
+      createdAt: new Date()
+    })
+    .then(() => alert("User added to Firestore!"))
+    .catch(err => console.error(err));
+  });
+</script>
     </body>
   </html>
+
 
