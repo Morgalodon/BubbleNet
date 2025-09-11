@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>        
+  <head>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"></script>
+    <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBx2cWdFp_amXtgB0MWH8qLrodpqtcpAW8",
+      authDomain: "bubblenettutorial.firebaseapp.com",
+      projectId: "bubblenettutorial",
+      storageBucket: "bubblenettutorial.firebasestorage.app",
+      messagingSenderId: "731380132780",
+      appId: "1:731380132780:web:7c000c0ef2147395122809",
+      measurementId: "G-VTSQN9395P"
+};
+
+      const app = firebase.intializeApp(firebaseConfig);
+      const db = firebase.firestore();
+    </script>
     <link rel="stylesheet" href="PrettyNet.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,3 +48,4 @@
             </script>
     </body>
   </html>
+
