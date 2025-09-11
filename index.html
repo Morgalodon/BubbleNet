@@ -39,39 +39,49 @@
             </div>
         </div>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  // Toggle the form
-  const btn = document.getElementById('show-form-btn');
-  const formContainer = document.getElementById('signup-form');
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('show-form-btn');
+      const formContainer = document.getElementById('signup-form');
 
-  btn.addEventListener('click', () => {
-    formContainer.style.display = formContainer.style.display === 'block' ? 'none' : 'block';
-  });
+      // Toggle form visibility
+      btn.addEventListener('click', () => {
+        formContainer.style.display = formContainer.style.display === 'block' ? 'none' : 'block';
+      });
 
-  // Handle form submission
-  const form = document.getElementById('create-account-form');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault(); // Prevent page reload
+      // Handle form submission
+      const form = document.getElementById('create-account-form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-    const username = document.getElementById('username').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+        // Get inputs safely
+        const usernameInput = document.getElementById('username');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
 
-    db.collection("users").add({
-      username: username,
-      email: email,
-      password: password, // Only for demo purposes
-      createdAt: new Date()
-    })
-    .then(() => {
-      alert("Account created successfully!");
-      form.reset();
-      formContainer.style.display = 'none';
-    })
-    .catch((err) => console.error("Error adding user:", err));
-  });
-});
-</script>
-    </body>
-  </html>
+        if (!usernameInput || !emailInput || !passwordInput) {
+          console.error('One or more input fields not found!');
+          return;
+        }
+
+        const username = usernameInput.value;
+        const email = emailInput.value;
+        const password = passwordInput.value;
+
+        db.collection("users").add({
+          username,
+          email,
+          password, // Only for demo purposes
+          createdAt: new Date()
+        })
+        .then(() => {
+          alert("Account created successfully!");
+          form.reset();
+          formContainer.style.display = 'none';
+        })
+        .catch(err => console.error("Error adding user:", err));
+      });
+    });
+  </script>
+</body>
+</html>
 
